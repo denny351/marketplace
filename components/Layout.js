@@ -20,10 +20,7 @@ export default ({ children }) => (
 					<Link href="/"><a>Home</a></Link>
 				</li>
 				<li>
-					<Link href="/a"><a>a</a></Link>
-				</li>
-				<li>
-					<Link href="/b"><a>b</a></Link>
+					<Link href="/item"><a>item</a></Link>
 				</li>
 				<li>
 					<Link href={{ pathname: '/posts', query: { id: '2' } }} as="/posts/2">
