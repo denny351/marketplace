@@ -7,46 +7,40 @@ const config = require('./config/config').get(process.env.NODE_ENV);
 
 const dev = process.env.NODE_ENV !== 'production'
 const next = require('next')
-const app = next({ dev })
+const nextApp = next({ dev })
 
 const port = parseInt(process.env.PORT, 10) || 3000
-const handle = app.getRequestHandler()
+const handle = nextApp.getRequestHandler();
 
-const itemRoute = require('./routes/api/item');
-const indexRoute = require('./routes/api/index');
+const authRoutes = require('./routes/api/auth');
+const itemRoutes = require('./routes/api/item');
+const userRoutes = require('./routes/api/user');
 
-app.prepare().then(() => {
-  server.use(bodyParser.urlencoded({ extended: false }));
+nextApp.prepare().then(() => {
+	server.use(bodyParser.urlencoded({ extended: false }));
   server.use(bodyParser.json());
+  server.use(cookieParser());
 
-  // MongoDB
-  mongoose.Promise = Promise;
-  mongoose.connect(config.DATABASE)
-  
-  server.use('/api/item', itemRoute);
+	// MongoDB
+	mongoose.Promise = Promise;
+	mongoose.connect(config.DATABASE);
+	var db = mongoose.connection;
+	db.on('error', console.error.bind(console, 'connection error:'));
 
-    server.get('*', (req, res) => {
-			return handle(req, res);
-		});
+	// server.get('/item', (req, res) => {
+	//   return app.render(req, res, '/item', req.query);
+	// });
 
-  // server.get('/a', (req, res) => {
-  //   return app.render(req, res, '/b', req.query)
-  // })
+	server.use('/api', authRoutes);
+	// server.use('/api/user', userRoutes);
+	// server.use('/api/item', itemRoutes);
 
-  // server.get('/b', (req, res) => {
-  //   return app.render(req, res, '/a', req.query)
-  // })
+	server.get('*', (req, res) => {
+		return handle(req, res);
+	});
 
-  // server.get('/posts/:id', (req, res) => {
-  //   return app.render(req, res, '/posts', { id: req.params.id })
-  // })
-
-  // server.get('*', (req, res) => {
-  //   return handle(req, res)
-  // })
-
-  server.listen(port, (err) => {
-    if (err) throw err
-    console.log(`> Ready on http://localhost:${port}`)
-  })
-})
+	server.listen(port, err => {
+		if (err) throw err;
+		console.log(`> Ready on http://localhost:${port}`);
+	});
+});
