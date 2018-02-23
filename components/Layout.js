@@ -1,10 +1,15 @@
-import Link from 'next/link';
 import Head from 'next/head';
-export default ({ children }) => (
+import Navbar from './Navbar/navbar';
+
+const Layout = ({ children }) => (
 	<div>
 		<Head>
 			<meta name="viewport" content="width=device-width, initial-scale=1" />
 			<meta charSet="utf-8" />
+			<link
+				href="https://fonts.googleapis.com/css?family=Raleway:300,400,700"
+				rel="stylesheet"
+			/>
 			<link
 				rel="stylesheet"
 				href="https://unpkg.com/antd@3/dist/antd.min.css"
@@ -12,23 +17,16 @@ export default ({ children }) => (
 		</Head>
 		<style jsx global>{`
 			body {
+				font-family: 'Raleway', sans-serif;
+			}
+			a {
+				text-decoration: none;
 			}
 		`}</style>
-		<div>
-			<ul>
-				<li>
-					<Link href="/"><a>Home</a></Link>
-				</li>
-				<li>
-					<Link href="/item"><a>item</a></Link>
-				</li>
-				<li>
-					<Link href={{ pathname: '/posts', query: { id: '2' } }} as="/posts/2">
-						<a>post #2</a>
-					</Link>
-				</li>
-			</ul>
-		</div>
+
+		<Navbar />
 		{children}
 	</div>
 );
+
+export default Layout;
