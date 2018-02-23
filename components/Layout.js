@@ -25,7 +25,9 @@ const Layout = ({ children }) => (
 		`}</style>
 
 		<Navbar />
-		{children}
+    <div style={{marginTop: '56px'}}>
+		  {children}
+    </div>
 	</div>
 );
 
