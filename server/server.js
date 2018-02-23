@@ -32,8 +32,8 @@ nextApp.prepare().then(() => {
 	// });
 
 	server.use('/api', authRoutes);
+	server.use('/api/item', itemRoutes);
 	// server.use('/api/user', userRoutes);
-	// server.use('/api/item', itemRoutes);
 
 	server.get('*', (req, res) => {
 		return handle(req, res);

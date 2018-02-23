@@ -19,13 +19,14 @@ const itemSchema = mongoose.Schema(
 		// 	type: String,
 		// 	required: 'n/a'
 		// },
-		owner: {
-			id: {
-				type: mongoose.Schema.Types.ObjectId,
-				ref: 'User'
-			},
-			username: String
-		}
+    ownerId: {
+      type: String,
+      required: true
+    },
+		ownerUsername: {
+      type: String,
+      required: true
+    }
 		// comments: [
 		// 	{
 		// 		type: mongoose.Schema.Types.ObjectId,
