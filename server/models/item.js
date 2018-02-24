@@ -11,22 +11,22 @@ const itemSchema = mongoose.Schema(
 			required: true
 		},
 		price: {
-			type: String,
-			default: true
+			type: Number,
+			required: true
 		},
 		// image: {
 		// 	data: Buffer,
 		// 	type: String,
 		// 	required: 'n/a'
 		// },
-    ownerId: {
-      type: String,
-      required: true
-    },
+		ownerId: {
+			type: String,
+			required: true
+		},
 		ownerUsername: {
-      type: String,
-      required: true
-    }
+			type: String,
+			required: true
+		}
 		// comments: [
 		// 	{
 		// 		type: mongoose.Schema.Types.ObjectId,
