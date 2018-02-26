@@ -4,27 +4,22 @@ import makeStore from '../store/store';
 import { loginUser } from '../store/actions/auth';
 
 import Layout from '../components/Layout';
-import Spinner from '../components/Widgets/Spinner/spinner';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+
 const FormItem = Form.Item;
 
 class Login extends React.Component {
-	state = {
-		isLoading: false
-	};
 
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
 				this.props.loginUser(values);
-				this.setState({ isLoading: true });
 			}
 		});
 	};
 
 	componentWillReceiveProps = nextProps => {
-		this.setState({ isLoading: false });
 		if (nextProps.auth.isAuth) {
 			Router.push('/');
 		}
