@@ -1,23 +1,43 @@
 import { Input, Button, Select } from 'antd';
 const Search = Input.Search;
-const Option = Select.Option
+const Option = Select.Option;
 
-const contentHeader = (props) => {
-  function handleChange(value) {
+const contentHeader = props => {
+	function handleChange(value) {
 		console.log(`selected ${value}`);
-	}
-	return <div className="headerContainer">
+  }
+  
+
+
+	return (
+		<div className="headerContainer">
 			<h2>Browse Items</h2>
 			<div className="headerBar">
 				<Button icon="filter" onClick={props.toggleFilter}>
-					Hide Filters
+          {props.showFilterBar 
+            ? 'Hide Filters'
+            : 'Show Filters'
+          }
 				</Button>
-				<Search id="search" placeholder="Search for a category or brand" onSearch={value => console.log(value)} style={{ width: '65%', paddingLeft: '90px' }} />
+				<Search
+					id="search"
+					placeholder="Search for a category or brand"
+					onSearch={value => console.log(value)}
+					style={{ width: '65%', paddingLeft: '90px' }}
+				/>
 				<div className="right">
-					<Button icon="reload" onClick={this.enterIconLoading} style={{ marginRight: '2px' }}>
+					<Button
+						icon="reload"
+						onClick={this.enterIconLoading}
+						style={{ marginRight: '2px' }}
+					>
 						Refresh
 					</Button>
-					<Select placeholder="Sort By" style={{ width: 120 }} onChange={handleChange}>
+					<Select
+						placeholder="Sort By"
+						style={{ width: 120 }}
+						onChange={handleChange}
+					>
 						<Option value="new">New</Option>
 						<Option value="highest">Highest Price</Option>
 						<Option value="lowest">Lowest Price</Option>
@@ -40,8 +60,10 @@ const contentHeader = (props) => {
 				#search {
 					width: 60%;
 					padding-left: 90px;
-				}`}</style>
-		</div>;
+				}
+			`}</style>
+		</div>
+	);
 };
 
 export default contentHeader;
