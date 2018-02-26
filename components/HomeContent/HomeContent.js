@@ -2,6 +2,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import ContentHeader from './ContentHeader/contentHeader';
 import FilterBar from './FilterBar/filterBar';
+import ItemsFeed from './ItemsFeed/itemsFeed';
 
 class HomeContent extends React.Component {
 	state = {
@@ -17,8 +18,10 @@ class HomeContent extends React.Component {
 	render() {
 		return (
 			<div style={{ marginTop: '15px' }}>
-				<ContentHeader toggleFilter={this.handleFilterBarToggle} />
+				<ContentHeader toggleFilter={this.handleFilterBarToggle} showFilterBar={this.state.showFilterBar} />
 				<CSSTransition
+          mountOnEnter
+          unmountOnExit
 					in={this.state.showFilterBar}
 					timeout={1000}
 					classNames="slide-filter"
@@ -27,7 +30,8 @@ class HomeContent extends React.Component {
 						<FilterBar />
 					</div>
 				</CSSTransition>
-        {/* <ItemsFeed /> */}
+
+        <ItemsFeed />
         
         
 				<style jsx>{`

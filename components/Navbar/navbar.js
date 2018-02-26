@@ -8,6 +8,7 @@ const Navbar = () => {
 			<Link href="/">
 				<a>
 					<Icon type="shop" className="logo" />
+          {'  '}Marketplace
 				</a>
 			</Link>
 			<NavbarItems />
