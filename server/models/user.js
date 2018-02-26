@@ -19,16 +19,23 @@ const userSchema = mongoose.Schema({
 	username: {
 		type: String,
 		require: true,
-		maxlength: 30
+		maxlength: 25
 	},
-	name: {
+	firstname: {
 		type: String,
-		maxlength: 30
+		maxlength: 25
 	},
 	lastname: {
 		type: String,
-		maxlength: 30
-	},
+		maxlength: 25
+  },
+  location: {
+    type: String,
+    required: true
+  },
+  bio: {
+    type: String
+  },
 	admin: {
 		type: Boolean,
 		default: false

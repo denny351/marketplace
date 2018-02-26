@@ -3,25 +3,30 @@ import withRedux from 'next-redux-wrapper';
 import makeStore from '../store/store';
 import { loginUser } from '../store/actions/auth';
 
+import Layout from '../components/Layout';
+import Spinner from '../components/Widgets/Spinner/spinner';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 const FormItem = Form.Item;
 
-import Layout from '../components/Layout';
-
 class Login extends React.Component {
+	state = {
+		isLoading: false
+	};
+
 	handleSubmit = e => {
 		e.preventDefault();
 		this.props.form.validateFields((err, values) => {
 			if (!err) {
-				console.log('Received values of form: ', values);
 				this.props.loginUser(values);
+				this.setState({ isLoading: true });
 			}
 		});
 	};
 
 	componentWillReceiveProps = nextProps => {
+		this.setState({ isLoading: false });
 		if (nextProps.auth.isAuth) {
-      Router.push('/');
+			Router.push('/');
 		}
 	};
 
@@ -37,9 +42,12 @@ class Login extends React.Component {
 								validateTrigger: 'onBlur',
 								rules: [
 									{
-										required: true,
 										type: 'email',
-										message: 'Please a valid email'
+										message: 'Please enter a valid email!'
+									},
+									{
+										required: true,
+										message: 'Please enter your email!'
 									}
 								]
 							})(
@@ -55,7 +63,7 @@ class Login extends React.Component {
 						<FormItem>
 							{getFieldDecorator('password', {
 								rules: [
-									{ required: true, message: 'Please enter your Password' }
+									{ required: true, message: 'Please enter your password' }
 								]
 							})(
 								<Input
@@ -111,9 +119,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		loginUser: (userdata) => dispatch(loginUser(userdata))
+		loginUser: userdata => dispatch(loginUser(userdata))
 	};
 };
 
-export default withRedux(makeStore, mapStateToProps, mapDispatchToProps)(Form.create()(Login));
-
+export default withRedux(makeStore, mapStateToProps, mapDispatchToProps)(
+	Form.create()(Login)
+);

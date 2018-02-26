@@ -14,7 +14,7 @@ const navbarItems = props => {
 					</Link>
 				</li>
 				<li>
-					<Link href="/Register">
+					<Link href="/register">
 						<a>Register</a>
 					</Link>
 				</li>
