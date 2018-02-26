@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "node server/server.js",
     "build": "next build",
-    "start": "NODE_ENV=production node server/server.js"
+    "start": "NODE_ENV=production node server/server.js",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "antd": "^3.0.2",
