@@ -2,9 +2,10 @@
 	"name": "market",
 	"version": "1.0.0",
 	"scripts": {
-		"dev": "node server/server.js",
-		"build": "next build",
-		"start": "NODE_ENV=production node server/server.js",
+		"dev": "node server/server.js -p $PORT",
+    "build": "next build",
+    "prestart": "next build",
+		"start": "NODE_ENV=production node server/server.js -p $PORT",
 		"heroku-postbuild": "npm run build"
 	},
 	"engines": {
