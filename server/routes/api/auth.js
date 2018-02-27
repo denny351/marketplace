@@ -5,16 +5,22 @@ const User = require('../../models/user');
 
 const { auth } = require('../../middleware/auth');
 
+router.get('/auth', auth, (req, res) => {
+	res.json({
+		isAuth: true,
+		id: req.user._id
+	});
+});
 
-router.post('/register', (req,res) => {
-  const user = new User(req.body);
+router.post('/register', (req, res) => {
+	const user = new User(req.body);
 
-  user.save((err, doc) => {
-    if (err) return res.json({ success: false });
+	user.save((err, doc) => {
+		if (err) return res.json({ success: false });
 
-    return res.status(200).json({ success: true, user: doc });
-  });
-})
+		return res.status(200).json({ success: true, user: doc });
+	});
+});
 
 router.post('/login', (req, res) => {
 	User.findOne({ email: req.body.email }, (err, user) => {
@@ -46,6 +52,5 @@ router.get('/logout', auth, (req, res) => {
 		res.sendStatus(200);
 	});
 });
-
 
 module.exports = router;
