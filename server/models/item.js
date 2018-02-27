@@ -5,7 +5,15 @@ const itemSchema = mongoose.Schema(
 		name: {
 			type: String,
 			required: true
-		},
+    },
+    company: {
+      type: String,
+      required: true
+    },
+    category: {
+      type: String,
+      required: true
+    },
 		description: {
 			type: String,
 			required: true
@@ -23,10 +31,6 @@ const itemSchema = mongoose.Schema(
 			type: String,
 			required: true
 		},
-		ownerUsername: {
-			type: String,
-			required: true
-		}
 		// comments: [
 		// 	{
 		// 		type: mongoose.Schema.Types.ObjectId,

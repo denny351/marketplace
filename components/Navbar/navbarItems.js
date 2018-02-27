@@ -4,7 +4,7 @@ const navbarItems = props => {
 	return <div>
 			<ul>
 				<li>
-					<Link href="/post-item">
+					<Link href="/new">
 						<a>Post Item</a>
 					</Link>
 				</li>
