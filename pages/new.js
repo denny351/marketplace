@@ -3,6 +3,8 @@ import withRedux from 'next-redux-wrapper';
 import makeStore from '../store/store';
 import { addItem } from '../store/actions/item';
 
+import withAuth from '../hoc/withAuth';
+
 import Layout from '../components/Layout';
 
 import {
@@ -212,5 +214,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default withRedux(makeStore, mapStateToProps, mapDispatchToProps)(
-	Form.create()(NewPost)
+	withAuth(Form.create()(NewPost))
 );

@@ -1,6 +1,15 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
+export function auth() {
+  const request = axios.get('/api/auth').then(response => response.data);
+
+  return {
+    type: actionTypes.USER_AUTH,
+    payload: request
+  };
+}
+
 export function loginUser({ email, password }) {
 	const request = axios.post('/api/login', { email, password })
     .then(response => response.data);
