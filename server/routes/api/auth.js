@@ -47,10 +47,10 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', auth, (req, res) => {
-	req.user.deleteToken(req.token, (err, user) => {
-		if (err) return res.status(400).send(err);
-		res.sendStatus(200);
-	});
+  req.user.deleteToken(req.token, (err, user) => {
+    if (err) return res.status(400).send(err);
+    res.sendStatus(200);
+  });
 });
 
 module.exports = router;
