@@ -5,7 +5,7 @@ import { addItem } from '../store/actions/item';
 
 import withAuth from '../hoc/withAuth';
 
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 import {
 	Form,

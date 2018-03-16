@@ -3,7 +3,7 @@ import withRedux from 'next-redux-wrapper';
 import makeStore from '../store/store';
 import { registerUser, clearAuth } from '../store/actions/auth';
 
-import Layout from '../components/Layout';
+import Layout from '../components/Layout/Layout';
 
 import {
 	Form,
