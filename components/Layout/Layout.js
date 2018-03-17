@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Navbar from './Navbar/navbar';
+import Navbar from '../Navbar/navbar';
 
 const Layout = ({ children }) => (
 	<div>
